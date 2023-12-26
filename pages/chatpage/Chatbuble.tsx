@@ -1,5 +1,5 @@
 import React from "react";
-import { Message } from "../realchatpage";
+import { Message } from "../Provider/MessageContext";
 
 const Chatbuble = ({ data }: { data: Array<Message> }) => {
   return (

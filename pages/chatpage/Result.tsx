@@ -41,10 +41,7 @@ const Results = () => {
               </button>
             </div>
           </div>
-          <div className=" grid gap-y-5">
-            <div>
-              <Card />
-            </div>
+          <div className="">
             <div>
               <Card />
             </div>

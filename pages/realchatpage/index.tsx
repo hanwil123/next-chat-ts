@@ -7,19 +7,14 @@ import { SocketContext } from '../Provider/SocketContext';
 import URL from '../url';
 import Chatbuble from '../chatpage/Chatbuble';
 import { AuthContext } from '../Provider/Auth_provider';
+import { Message, useMessage } from '../Provider/MessageContext';
 
-export type Message = {
-  content: string;
-  type: 'recv' | 'self';
-  username : string;
-  room_id : string;
-  timestamp: number;
-}
+
 const Chat = () => {
 
 
 const [users, setUsers] = useState<Array<{ username : string}>>([]);
-const [messages, setMessages] = useState<Message[]>([]);
+const {messages, setMessages} = useMessage()
 const [inputMessage, setInputMessage] = useState<string>("");
 const textarea = useRef<HTMLTextAreaElement>(null);
 const { conn, setConn } = useContext(SocketContext);
@@ -42,7 +37,7 @@ useEffect(() => {
             }
            }) 
            const datas = await response.json();
-           console.log("data : " + JSON.stringify(datas))
+           console.log("data - data: " + JSON.stringify(datas))
            setUsers(datas);
         } catch (error) {
             console.log(error);
@@ -57,7 +52,7 @@ useEffect(() => {
         
     } else  if (conn !== null && conn.readyState === WebSocket.OPEN) {
       conn.onmessage = (message) => {
-          const m: Message = JSON.parse(message.data);
+          const m : Message = JSON.parse(message.data);
           if (m.content === 'A new user has been joined') {
               setUsers([...users, { username: m.username }])
           }

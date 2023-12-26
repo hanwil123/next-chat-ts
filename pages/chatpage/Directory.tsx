@@ -1,8 +1,12 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import { IoIosAddCircle } from "react-icons/io";
 import Cardirectory from "./Cardirectory";
+import { SocketContext } from "../Provider/SocketContext";
+import axios from "axios";
+import URL from "../url";
 
 const Directory = () => {
+
   return (
     <>
       <div className=" flex flex-col h-full py-5 w-[345px] px-5">
@@ -23,21 +27,6 @@ const Directory = () => {
           </div>
           </div>
           <div className=" grid gap-y-5">
-            <div>
-              <Cardirectory/>
-            </div>
-            <div>
-              <Cardirectory/>
-            </div>
-            <div>
-              <Cardirectory/>
-            </div>
-            <div>
-              <Cardirectory/>
-            </div>
-            <div>
-              <Cardirectory/>
-            </div>
             <div>
               <Cardirectory/>
             </div>
